@@ -52,7 +52,6 @@
    $numaNodeAssignment             = New-xDscResourceProperty –Name numaNodeAssignment –Type string –Attribute Write -ValidateSet "MostAvailableMemory","WindowsScheduling"
    $numaNodeAffinityMode           = New-xDscResourceProperty –Name numaNodeAffinityMode –Type string –Attribute Write -ValidateSet "Soft","Hard"
 
-
 #array to hold our properties
 
 $xDscProperties =@(
@@ -107,7 +106,7 @@ $xDscProperties =@(
        $smpProcessorAffinityMask2,
        $processorGroup,
        $numaNodeAssignment,
-       $numaNodeAffinityMode             
+       $numaNodeAffinityMode      
     )
 
 $xDscProperties2 =@(
@@ -163,7 +162,7 @@ $xDscProperties2 =@(
        $smpProcessorAffinityMask2,
        $processorGroup,
        $numaNodeAssignment,
-       $numaNodeAffinityMode             
+       $numaNodeAffinityMode      
     )
 
 # Create resource that will be defining defaults for application pool 
@@ -176,4 +175,4 @@ New-xDscResource -Name RafPe_cWebAppPool -FriendlyName cWebAppPool -ModuleName c
 
 
 
-
+                 
