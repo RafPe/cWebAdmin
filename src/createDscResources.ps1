@@ -1,7 +1,4 @@
-﻿   $Ensure                         = New-xDscResourceProperty -Name Ensure -Type String -Attribute Write -ValidateSet "Present", "Absent"   
-   $name                           = New-xDscResourceProperty –Name Name –Type String –Attribute Key
-   $queueLength                    = New-xDscResourceProperty –Name queueLength –Type String –Attribute Write
-   $autoStart                      = New-xDscResourceProperty –Name autoStart –Type String –Attribute Write
+﻿   $Ensure                         = New-xDscResourceProperty –Name autoStart –Type String –Attribute Write
    $enable32BitAppOnWin64          = New-xDscResourceProperty –Name enable32BitAppOnWin64 –Type string –Attribute Write -ValidateSet "true","false"
    $managedRuntimeVersion          = New-xDscResourceProperty –Name managedRuntimeVersion –Type string –Attribute Write -ValidateSet "v4.0","v2.0",""
    $managedRuntimeLoader           = New-xDscResourceProperty –Name managedRuntimeLoader –Type string –Attribute Write
@@ -166,7 +163,10 @@ $xDscProperties2 =@(
     )
 
 # Create resource that will be defining defaults for application pool 
-New-xDscResource -Name RafPe_cWebAppPoolDefaults -FriendlyName cWebAppPoolDefaults -ModuleName cWebAdmin -Path 'C:\Program Files\WindowsPowerShell\Modules' `
+New-xDscResource -Name RafPe_cWebAppPoolDefaults`
+                 -FriendlyName cWebAppPoolDefaults`
+                 -ModuleName cWebAdmin`
+                 -Path 'C:\Program Files\WindowsPowerShell\Modules' `
                  -Property $xDscProperties  -Verbose
 
 # Create resource that will be creating our application pool 
