@@ -12,11 +12,21 @@
 
     Node $NodeName
     {
-        # Allow Write access to some section that normally don't have it.
-        cWebAppPoolDefaults serverRuntime 
+       
+       LocalConfigurationManager
         {
-            Name      =  'applicationPoolDefaults'
-            autoStart =  'False'
+            ConfigurationModeFrequencyMins = 15
+            ConfigurationMode =  'ApplyAndAutoCorrect'
+            RefreshFrequencyMins = 30
+
+        }
+
+        cWebAppPoolDefaults ConfigureAppPoolDefaults 
+        {
+            Name                =  'applicationPoolDefaults'         
+            managedPipelineMode =  'Classic'              
+            autoStart           =  'false'
+            CLRConfigFile       =  'whatever'
         }
            
     }
