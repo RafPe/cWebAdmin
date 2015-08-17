@@ -13,21 +13,17 @@
     Node $NodeName
     {
        
-       LocalConfigurationManager
-        {
-            ConfigurationModeFrequencyMins = 15
-            ConfigurationMode =  'ApplyAndAutoCorrect'
-            RefreshFrequencyMins = 30
-
-        }
-
+        # still pointing to defaults - to be changed 
         cWebAppPoolDefaults ConfigureAppPoolDefaults 
         {
-            Name                =  'applicationPoolDefaults'         
-            managedPipelineMode =  'Classic'              
-            autoStart           =  'false'
-            CLRConfigFile       =  'whatever'
+            Name                =  'applicationPoolDefaults'        # by pecyfying 'applicationPoolDefaults' as name we show we want to act on default  
+            managedPipelineMode =  'Integrated'            
+            autoStart           =  'true'
+            startMode           =  'AlwaysRunning'
         }
            
     }
 }
+
+
+# Start-DscConfiguration -Path .\Config_AppPoolDefaaults -Wait -Debug
