@@ -13,10 +13,22 @@
     Node $NodeName
     {
        
-        # still pointing to defaults - to be changed 
-        cWebAppPoolDefaults ConfigureAppPoolDefaults 
+        # Configure App Pool defaults as all apppools inherits those settings
+        # on creation time
+        cWebAppPool ConfigureAppPoolDefaults 
         {
-            Name                =  'applicationPoolDefaults'        # by pecyfying 'applicationPoolDefaults' as name we show we want to act on default  
+            Name                =  'applicationPoolDefaults'        # by specyfying 'applicationPoolDefaults' as name we show we want to act on default  
+            managedPipelineMode =  'Integrated'            
+            autoStart           =  'true'
+            startMode           =  'AlwaysRunning'
+        }
+
+        # Here we create some new app pool (reconfigure existing)
+        cWebAppPool MyNewAppPool 
+        {
+            DependsOn           =  '[cWebAppPool]ConfigureAppPoolDefaults'
+            Ensure              =  'Present'
+            Name                =  'mySweetAppPool'        
             managedPipelineMode =  'Integrated'            
             autoStart           =  'true'
             startMode           =  'AlwaysRunning'
