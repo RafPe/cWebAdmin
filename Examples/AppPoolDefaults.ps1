@@ -49,8 +49,11 @@
     }
 }
 
+Config_AppPoolDefaaults
 
-# Start-DscConfiguration -Path .\Config_AppPoolDefaaults -Wait -Debug
+
+Start-DscConfiguration -Path .\Config_AppPoolDefaaults -Wait -Verbose
+
 <#
         # Here we create some new app pool (reconfigure existing)
         cWebAppPool MyNewAppPool 
