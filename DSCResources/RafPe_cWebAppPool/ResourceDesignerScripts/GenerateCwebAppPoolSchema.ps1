@@ -1,4 +1,5 @@
-﻿   $Ensure                         = New-xDscResourceProperty -Name Ensure -Type String -Attribute Write -ValidateSet 'Present', 'Absent'
+﻿   $State                          = New-xDscResourceProperty -Name State -Type String -Attribute Write -ValidateSet 'Started','Stopped'
+   $Ensure                         = New-xDscResourceProperty -Name Ensure -Type String -Attribute Write -ValidateSet 'Present', 'Absent'
    $name                           = New-xDscResourceProperty –Name Name –Type String –Attribute Key		
    $queueLength                    = New-xDscResourceProperty –Name queueLength –Type String –Attribute Write		
    $autoStart                      = New-xDscResourceProperty –Name autoStart –Type String –Attribute Write
@@ -54,6 +55,7 @@
 
 #array to hold our properties
 $xDscProperties =@(
+       $State,
        $Ensure
        $name,
        $queueLength,
@@ -112,3 +114,6 @@ $xDscProperties =@(
 # Create resource that will be creating our application pool 
 New-xDscResource -Name RafPe_cWebAppPool `                 -FriendlyName cWebAppPool `                 -ModuleName cWebAdmin `                 -Path 'C:\Program Files\WindowsPowerShell\Modules'`
                  -Property $xDscProperties -Verbose
+
+
+Update-xDscResource -Name RafPe_cWebAppPool -Property $xDscProperties -FriendlyName cWebAppPool -ClassVersion '1.0' -Verbose
